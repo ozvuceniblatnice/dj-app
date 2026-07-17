@@ -1,11 +1,11 @@
 """Widget pro efekty"""
 
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QSlider,
     QLabel, QCheckBox, QComboBox
 )
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 
 
 class EffectsWidget(QWidget):
@@ -43,7 +43,7 @@ class EffectsWidget(QWidget):
         bass_label.setMinimumWidth(120)
         bass_layout.addWidget(bass_label)
         
-        bass_slider = QSlider(Qt.Orientation.Horizontal)
+        bass_slider = QSlider(Qt.Horizontal)
         bass_slider.setMinimum(-12)
         bass_slider.setMaximum(12)
         bass_slider.setValue(0)
@@ -61,7 +61,7 @@ class EffectsWidget(QWidget):
         mid_label.setMinimumWidth(120)
         mid_layout.addWidget(mid_label)
         
-        mid_slider = QSlider(Qt.Orientation.Horizontal)
+        mid_slider = QSlider(Qt.Horizontal)
         mid_slider.setMinimum(-12)
         mid_slider.setMaximum(12)
         mid_slider.setValue(0)
@@ -79,7 +79,7 @@ class EffectsWidget(QWidget):
         treble_label.setMinimumWidth(120)
         treble_layout.addWidget(treble_label)
         
-        treble_slider = QSlider(Qt.Orientation.Horizontal)
+        treble_slider = QSlider(Qt.Horizontal)
         treble_slider.setMinimum(-12)
         treble_slider.setMaximum(12)
         treble_slider.setValue(0)
@@ -106,7 +106,7 @@ class EffectsWidget(QWidget):
         echo_time_label = QLabel("Čas (ms):")
         echo_layout.addWidget(echo_time_label)
         
-        echo_slider = QSlider(Qt.Orientation.Horizontal)
+        echo_slider = QSlider(Qt.Horizontal)
         echo_slider.setMinimum(0)
         echo_slider.setMaximum(1000)
         echo_slider.setValue(500)
@@ -143,7 +143,7 @@ class EffectsWidget(QWidget):
         filter_freq_label = QLabel("Frekvence (Hz):")
         filter_layout.addWidget(filter_freq_label)
         
-        filter_slider = QSlider(Qt.Orientation.Horizontal)
+        filter_slider = QSlider(Qt.Horizontal)
         filter_slider.setMinimum(100)
         filter_slider.setMaximum(20000)
         filter_slider.setValue(20000)

@@ -1,12 +1,12 @@
 """Widget pro přehrávač"""
 
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
     QLabel, QSlider, QListWidget, QListWidgetItem,
     QProgressBar
 )
-from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QFont
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QFont
 
 
 class PlayerWidget(QWidget):
@@ -84,7 +84,7 @@ class PlayerWidget(QWidget):
         speed_label = QLabel("Rychlost (tempo):")
         speed_layout.addWidget(speed_label)
         
-        speed_slider = QSlider(Qt.Orientation.Horizontal)
+        speed_slider = QSlider(Qt.Horizontal)
         speed_slider.setMinimum(50)
         speed_slider.setMaximum(150)
         speed_slider.setValue(100)

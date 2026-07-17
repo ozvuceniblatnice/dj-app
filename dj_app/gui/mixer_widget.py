@@ -1,11 +1,11 @@
 """Widget pro mixer"""
 
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QSlider,
     QLabel, QSpinBox, QDoubleSpinBox
 )
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 
 
 class MixerWidget(QWidget):
@@ -36,7 +36,7 @@ class MixerWidget(QWidget):
         crossfader_label.setMinimumWidth(100)
         crossfader_layout.addWidget(crossfader_label)
         
-        crossfader_slider = QSlider(Qt.Orientation.Horizontal)
+        crossfader_slider = QSlider(Qt.Horizontal)
         crossfader_slider.setMinimum(0)
         crossfader_slider.setMaximum(100)
         crossfader_slider.setValue(50)
@@ -56,7 +56,7 @@ class MixerWidget(QWidget):
         vol1_label.setMinimumWidth(100)
         vol1_layout.addWidget(vol1_label)
         
-        vol1_slider = QSlider(Qt.Orientation.Horizontal)
+        vol1_slider = QSlider(Qt.Horizontal)
         vol1_slider.setMinimum(0)
         vol1_slider.setMaximum(100)
         vol1_slider.setValue(70)
@@ -76,7 +76,7 @@ class MixerWidget(QWidget):
         vol2_label.setMinimumWidth(100)
         vol2_layout.addWidget(vol2_label)
         
-        vol2_slider = QSlider(Qt.Orientation.Horizontal)
+        vol2_slider = QSlider(Qt.Horizontal)
         vol2_slider.setMinimum(0)
         vol2_slider.setMaximum(100)
         vol2_slider.setValue(70)
@@ -96,7 +96,7 @@ class MixerWidget(QWidget):
         master_label.setMinimumWidth(100)
         master_layout.addWidget(master_label)
         
-        master_slider = QSlider(Qt.Orientation.Horizontal)
+        master_slider = QSlider(Qt.Horizontal)
         master_slider.setMinimum(0)
         master_slider.setMaximum(100)
         master_slider.setValue(80)

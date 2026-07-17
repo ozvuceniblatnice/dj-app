@@ -1,13 +1,13 @@
 """Hlavní okno aplikace DJ App"""
 
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QLabel, QSlider, QFileDialog,
     QListWidget, QListWidgetItem, QMessageBox,
     QTabWidget, QStatusBar
 )
-from PyQt6.QtCore import Qt, QUrl
-from PyQt6.QtGui import QIcon, QFont
+from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtGui import QIcon, QFont
 
 from dj_app.gui.mixer_widget import MixerWidget
 from dj_app.gui.player_widget import PlayerWidget

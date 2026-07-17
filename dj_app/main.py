@@ -8,8 +8,8 @@ import sys
 import os
 from pathlib import Path
 
-from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import Qt
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import Qt
 
 from dj_app.gui.main_window import MainWindow
 from dj_app.utils.config import Config
@@ -45,7 +45,6 @@ def main():
     app = QApplication(sys.argv)
     app.setApplicationName("DJ App")
     app.setApplicationVersion("0.1.0")
-    app.setStyle("Fusion")
     
     # Vytvoř hlavní okno
     print("🖼️  Otevírám hlavní okno...")
@@ -60,7 +59,7 @@ def main():
     print("  - Zkontroluj PipeWire status: systemctl --user status pipewire")
     print()
     
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
