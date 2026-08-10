@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QLabel, QSlider, QFileDialog,
     QListWidget, QListWidgetItem, QMessageBox,
-    QTabWidget, QStatusBar
+    QTabWidget, QStatusBar, QDialog
 )
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon, QFont
@@ -12,6 +12,8 @@ from PyQt5.QtGui import QIcon, QFont
 from dj_app.gui.mixer_widget import MixerWidget
 from dj_app.gui.player_widget import PlayerWidget
 from dj_app.gui.effects_widget import EffectsWidget
+from dj_app.gui.spotify_widget import SpotifyWidget
+from dj_app.gui.youtube_widget import YouTubeWidget
 from dj_app.audio.mixer import AudioMixer
 
 
@@ -21,7 +23,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("DJ App - Linux DJ Mixer")
-        self.setGeometry(100, 100, 1200, 800)
+        self.setGeometry(100, 100, 1400, 900)
         
         # Audio mixer
         self.mixer = AudioMixer()
@@ -50,21 +52,29 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(title_label)
         
         # Tabs
-        tabs = QTabWidget()
+        self.tabs = QTabWidget()
         
         # Player Tab
         player_tab = PlayerWidget(self.mixer)
-        tabs.addTab(player_tab, "🎧 Přehrávač")
+        self.tabs.addTab(player_tab, "🎧 Přehrávač")
         
         # Mixer Tab
         mixer_tab = MixerWidget(self.mixer)
-        tabs.addTab(mixer_tab, "🎚️ Mixer")
+        self.tabs.addTab(mixer_tab, "🎚️ Mixer")
         
         # Effects Tab
         effects_tab = EffectsWidget(self.mixer)
-        tabs.addTab(effects_tab, "✨ Efekty")
+        self.tabs.addTab(effects_tab, "✨ Efekty")
         
-        main_layout.addWidget(tabs)
+        # Spotify Tab
+        spotify_tab = SpotifyWidget(self.mixer)
+        self.tabs.addTab(spotify_tab, "🎵 Spotify")
+        
+        # YouTube Tab
+        youtube_tab = YouTubeWidget(self.mixer)
+        self.tabs.addTab(youtube_tab, "🎬 YouTube")
+        
+        main_layout.addWidget(self.tabs)
         
         # Kontrolní tlačítka dole
         controls_layout = QHBoxLayout()
@@ -74,20 +84,20 @@ class MainWindow(QMainWindow):
         add_file_btn.clicked.connect(self.add_audio_file)
         controls_layout.addWidget(add_file_btn)
         
-        add_youtube_btn = QPushButton("🎬 Přidat z YouTube")
-        add_youtube_btn.setMinimumHeight(40)
-        add_youtube_btn.clicked.connect(self.add_youtube)
-        controls_layout.addWidget(add_youtube_btn)
-        
-        add_spotify_btn = QPushButton("🎵 Přidat ze Spotify")
+        add_spotify_btn = QPushButton("🎵 Spotify")
         add_spotify_btn.setMinimumHeight(40)
-        add_spotify_btn.clicked.connect(self.add_spotify)
+        add_spotify_btn.clicked.connect(lambda: self.tabs.setCurrentIndex(3))
         controls_layout.addWidget(add_spotify_btn)
+        
+        add_youtube_btn = QPushButton("🎬 YouTube")
+        add_youtube_btn.setMinimumHeight(40)
+        add_youtube_btn.clicked.connect(lambda: self.tabs.setCurrentIndex(4))
+        controls_layout.addWidget(add_youtube_btn)
         
         main_layout.addLayout(controls_layout)
         
         # Status bar
-        self.statusBar().showMessage("Připraveno | PipeWire: Připojeno")
+        self.statusBar().showMessage("Připraveno | PipeWire: Připojeno | Spotify: Připraveno | YouTube: Připraveno")
         
     def add_audio_file(self):
         """Přidej audio soubor"""
@@ -103,22 +113,6 @@ class MainWindow(QMainWindow):
             self.mixer.add_source("file", file_path)
             self.statusBar().showMessage(f"Přidáno: {file_path}")
             QMessageBox.information(self, "Úspěch", f"Soubor přidán: {file_path}")
-    
-    def add_youtube(self):
-        """Přidej z YouTube"""
-        QMessageBox.information(
-            self,
-            "YouTube",
-            "Zadej URL YouTube videa:\n\n(Funkce bude implementována v příští verzi)"
-        )
-    
-    def add_spotify(self):
-        """Přidej ze Spotify"""
-        QMessageBox.information(
-            self,
-            "Spotify",
-            "Připoj svůj účet Spotify:\n\n(Funkce bude implementována v příští verzi)"
-        )
     
     def closeEvent(self, event):
         """Zavření aplikace"""
